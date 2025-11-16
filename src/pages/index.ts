@@ -1,0 +1,7 @@
+export { default as Home} from '~/pages/Home'
+export { default as About} from '~/pages/About'
+export { default as Contact} from '~/pages/Contact'
+export { default as ArticleDetail} from '~/pages/ArticleDetail'
+export { default as RedirectArticle} from '~/pages/RedirectArticle'
+export { default as RedirectCategory} from '~/pages/RedirectCategory'
+export { default as Category} from '~/pages/Category'
