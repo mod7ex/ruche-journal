@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import { SocialMediaLinks } from '~/components';
+import Logo from '/logo-white-transparent.png'
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -50,7 +51,7 @@ export default function Footer() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                         <div>
-                            <img src="/logo-white-transparent.png" alt="La ruche Journal" width={120} className='mb-4' />
+                            <img src={Logo} alt="La ruche Journal" width={120} className='mb-4' />
                             <p className="text-sm mb-4">
                                 <small>Restez en contact avec nous sur les réseaux sociaux</small>
                             </p>

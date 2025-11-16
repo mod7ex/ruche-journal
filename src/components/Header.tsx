@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { Menu, X, Search } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { categories } from '~/lib';
+import Logo from '/logo.png'
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -47,7 +48,7 @@ export default function Header() {
                         to="/"
                         className="text-2xl font-bold text-gray-900 hover:text-gray-700 transition-colors"
                     >
-                        <img src="/logo.png" alt="La ruche Journal" width={120} />
+                        <img src={Logo} alt="La ruche Journal" width={120} />
                     </Link>
 
                     <nav className="hidden md:flex items-center space-x-8">
