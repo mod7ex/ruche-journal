@@ -58,3 +58,11 @@ export async function loadRelatedArticles(category_id: string, count: number) {
 export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export function formatDate (date: string) {
+  return new Date(date).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+  });
+};

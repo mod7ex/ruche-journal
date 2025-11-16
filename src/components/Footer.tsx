@@ -5,17 +5,17 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     const footerLinks = {
-        About: [
-            { name: 'Our Story', href: '#' },
-            { name: 'Team', href: '#' },
+        'À propos': [
+            { name: 'Notre histoire', href: '#' },
+            { name: 'Équipe', href: '#' },
             { name: 'Contact', href: '/contact' },
         ],
-        Legal: [
-            { name: 'Privacy Policy', href: '#' },
-            { name: 'Terms of Service', href: '#' },
-            { name: 'Cookie Policy', href: '#' },
+        'Légal': [
+            { name: 'Politique de Confidentialité', href: '/privacy-policy' },
+            { name: 'Termes de Service', href: '/terms-of-service' },
+            { name: 'Politique de Cookies', href: '/cookies-policy' },
         ],
-        Categories: [
+        "Catégories": [
             { name: 'Technology', href: '/category/technology' },
             { name: 'Business', href: '/category/business' },
             { name: 'Science', href: '/category/science' },
@@ -27,9 +27,9 @@ export default function Footer() {
         <>
             <section className="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-4xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+                    <h2 className="text-4xl font-bold mb-4">Abonnez-vous à notre newsletter</h2>
                     <p className="text-xl text-gray-300 mb-8">
-                        Get the latest stories delivered to your inbox every week
+                        Recevez les dernières actualités directement dans votre boîte mail.
                     </p>
                     <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                         <input
@@ -41,7 +41,7 @@ export default function Footer() {
                             type="submit"
                             className="px-8 py-3 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-300 transition-colors hover:cursor-pointer"
                         >
-                            Subscribe
+                            S'abonner
                         </button>
                     </form>
                 </div>
@@ -50,9 +50,9 @@ export default function Footer() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                         <div>
-                            <h3 className="text-white text-xl font-bold mb-4">The Journal</h3>
+                            <img src="/logo-white-transparent.png" alt="La ruche Journal" width={120} className='mb-4' />
                             <p className="text-sm mb-4">
-                                Delivering quality journalism and in-depth stories that matter.
+                                <small>Restez en contact avec nous sur les réseaux sociaux</small>
                             </p>
                             <SocialMediaLinks />
                         </div>
@@ -77,7 +77,7 @@ export default function Footer() {
                     </div>
 
                     <div className="border-t border-gray-800 pt-8 text-center text-sm">
-                        <p>&copy; {currentYear} The Journal. All rights reserved.</p>
+                        <p>&copy; {currentYear} <b>La Ruche Journal</b>. Tous droits réservés.</p>
                     </div>
                 </div>
             </footer>

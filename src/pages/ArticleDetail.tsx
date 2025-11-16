@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import type { Article, Tag } from '~/lib';
-import { loadArticle, loadRelatedArticles } from '~/utils';
+import { loadArticle, loadRelatedArticles, formatDate, sleep } from '~/utils';
 import { Clock, User, ArrowLeft, Share2 } from 'lucide-react';
 
 export default function ArticleDetail() {
@@ -19,6 +19,9 @@ export default function ArticleDetail() {
 
     const fetchArticle = async () => {
         try {
+            setLoading(true);
+            await sleep(500); // Simulate network delay
+
             const _article = await loadArticle(slug!);
             const _relatedArticles = await loadRelatedArticles(_article?.category?.id!, 7);
             setArticle(_article || null);
@@ -32,13 +35,7 @@ export default function ArticleDetail() {
         }
     };
 
-    const formatDate = (date: string) => {
-        return new Date(date).toLocaleDateString('en-US', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric',
-        });
-    };
+
 
     if (loading) {
         return (

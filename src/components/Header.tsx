@@ -1,11 +1,29 @@
 import { Link } from 'react-router';
 import { Menu, X, Search } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { categories } from '~/lib';
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const mobileMenuRef = useRef(null);
+
+    useEffect(() => {
+        // @ts-ignore
+        const handleClickOutside = (event) => {
+            if (
+                // @ts-ignore
+                mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)
+            ) {
+                setIsMobileMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,13 +41,13 @@ export default function Header() {
                 : 'bg-white/95 backdrop-blur-sm'
                 }`}
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
                 <div className="flex items-center justify-between h-16">
                     <Link
                         to="/"
                         className="text-2xl font-bold text-gray-900 hover:text-gray-700 transition-colors"
                     >
-                        The Journal
+                        <img src="/logo.png" alt="La ruche Journal" width={120} />
                     </Link>
 
                     <nav className="hidden md:flex items-center space-x-8">
@@ -68,22 +86,20 @@ export default function Header() {
                 </div>
             </div>
 
-            {isMobileMenuOpen && (
-                <div className="md:hidden border-t border-gray-200 bg-white">
-                    <nav className="px-4 py-4 space-y-2">
-                        {categories.map((category) => (
-                            <Link
-                                key={category.slug}
-                                to={`/category/${category.slug}`}
-                                className="block py-2 text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                {category.name}
-                            </Link>
-                        ))}
-                    </nav>
-                </div>
-            )}
+            <div ref={mobileMenuRef} className={`md:hidden border-t border-gray-200 bg-white overflow-hidden transition-[max-height] duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-[500px]' : 'max-h-0'}`} >
+                <nav className="px-4 py-4 space-y-2">
+                    {categories.map((category) => (
+                        <Link
+                            key={category.slug}
+                            to={`/category/${category.slug}`}
+                            className="block py-2 text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            {category.name}
+                        </Link>
+                    ))}
+                </nav>
+            </div>
         </header>
     );
 }

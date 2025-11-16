@@ -6,38 +6,49 @@ import {
     RedirectArticle,
     ArticleDetail,
     RedirectCategory,
-    Category
-} from "./pages";
+    Category,
+    PrivacyAndPolicy,
+    TermsOfService,
+    CookiePolicy
+} from "~/pages";
+
+import {
+    ScrollToTop,
+} from "~/components";
 
 export default function App() {
     return (
-        <Routes>
-            {/* layout */}
-            <Route element={<MainLayout />}>
+        <>
+            <ScrollToTop />
 
-                {/* index */}
-                <Route index element={<Home />} />
+            <Routes>
+                {/* layout */}
+                <Route element={<MainLayout />}>
 
-                {/* simple pages */}
-                <Route path="about" element={<About />} />
-                <Route path="contact" element={<Contact />} />
+                    <Route index element={<Home />} />
 
-                {/* article prefix */}
-                <Route path="article">
-                    <Route index element={<RedirectArticle />} />
-                    <Route path=":slug" element={<ArticleDetail />} />
+                    <Route path="about" element={<About />} />
+                    <Route path="contact" element={<Contact />} />
+
+                    <Route path="article">
+                        <Route index element={<RedirectArticle />} />
+                        <Route path=":slug" element={<ArticleDetail />} />
+                    </Route>
+
+                    <Route path="category">
+                        <Route index element={<RedirectCategory />} />
+                        <Route path=":slug" element={<Category />} />
+                    </Route>
+
+                    <Route path="privacy-policy" element={<PrivacyAndPolicy />} />
+                    <Route path="terms-of-service" element={<TermsOfService />} />
+                    <Route path="cookies-policy" element={<CookiePolicy />} />
+
+                    {/* catch-all */}
+                    {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+
                 </Route>
-
-                {/* category prefix */}
-                <Route path="category">
-                    <Route index element={<RedirectCategory />} />
-                    <Route path=":slug" element={<Category />} />
-                </Route>
-
-                {/* catch-all */}
-                {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
-
-            </Route>
-        </Routes>
+            </Routes>
+        </>
     );
 }

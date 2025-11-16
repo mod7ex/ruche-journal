@@ -5,13 +5,14 @@ export default function () {
         <div className="container mx-auto px-6 py-12">
             <h2 className="text-2xl font-semibold mb-6 text-center">Get in Touch</h2>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
 
                 <div className="bg-white p-8 rounded-lg shadow">
-                    <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
-                    <p className="mb-2"><strong>Email:</strong> contact@myjournal.com</p>
-                    <p className="mb-2"><strong>Phone:</strong> +123 456 7890</p>
-                    <p className="mb-4"><strong>Address:</strong> 123 Journal St, Writing City</p>
+                    <h3 className="text-xl font-semibold mb-4">Coordonnées</h3>
+                    <p className="mb-2"><strong>Email:</strong> contact@groupescolairelaruche.ma</p>
+                    <p className="mb-2"><strong>Phone:</strong> 05 22 90 73 70</p>
+                    <p className="mb-2"><strong>Phone:</strong> +212661526737</p>
+                    <p className="mb-4"><strong>Address:</strong> Casablanca, Oulfa</p>
 
                     <SocialMediaLinks />
                 </div>
@@ -46,7 +47,16 @@ export default function () {
                 </div>
 
             </div>
-        </div>
 
+            <div className='rounded-lg shadow'>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.3627175680836!2d-7.698926600000001!3d33.5439511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda62b341fa477e1%3A0xbc7bc792cd92c7f7!2sSchool%20Group%20La%20Ruche%20%7C%20Oulfa!5e0!3m2!1sen!2sma!4v1763310602029!5m2!1sen!2sma"
+                    width="100%"
+                    height="450"
+                    loading="lazy"
+                >
+                </iframe>
+            </div>
+        </div>
     );
 }
