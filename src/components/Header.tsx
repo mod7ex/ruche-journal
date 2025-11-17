@@ -1,13 +1,35 @@
 import { Link } from 'react-router';
-import { Menu, X, Search } from 'lucide-react';
+import { Menu, X, Search, LogInIcon } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { categories } from '~/lib';
 import Logo from '/logo.png'
+import { handleGoogleLogin, auth, handleSignOut } from "~/firebase";
+import { useSelector, useDispatch } from 'react-redux'
+import { setUser } from '~/store/user'
+
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const mobileMenuRef = useRef(null);
+    // @ts-ignore
+    const user = useSelector(state => state.user.value)
+    const dispatch = useDispatch()
+
+    const signout = () => {
+        handleSignOut()
+        dispatch(setUser(null))
+    }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (_user) => {
+            console.log(_user)
+            dispatch(setUser(_user))
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     useEffect(() => {
         // @ts-ignore
@@ -23,8 +45,6 @@ export default function Header() {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
-
-
 
     useEffect(() => {
         const handleScroll = () => {
@@ -70,6 +90,17 @@ export default function Header() {
                             aria-label="Search"
                         >
                             <Search className="w-5 h-5 text-gray-700" />
+                        </button>
+
+                        <button
+                            className="p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
+                            aria-label="Search"
+                            onClick={() => !user ? handleGoogleLogin() : signout()}
+                        >
+                            {
+                                !user ? <LogInIcon className="w-5 h-5 text-gray-700" /> :
+                                    <img src={user.photoURL!} alt="user icon" width={50} className='rounded-full shadow-lg transition-all duration-300 ease-in-out' />
+                            }
                         </button>
 
                         <button
