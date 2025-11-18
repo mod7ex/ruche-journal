@@ -3,13 +3,14 @@ import { useParams, Link } from 'react-router';
 import type { Article, Tag } from '~/lib';
 import { loadArticle, formatDate, sleep } from '~/utils';
 import { Clock, User, ArrowLeft, Share2 } from 'lucide-react';
-import { Comments, Loading, RelatedArticles, AuthorCard } from '~/components'
+import { Comments, Loading, RelatedArticles, AuthorCard, SharePopup } from '~/components'
 
 export default function ArticleDetail() {
     const { slug } = useParams<{ slug: string }>();
     const [article, setArticle] = useState<Article | null>(null);
     const [tags, setTags] = useState<Tag[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isShareUp, toggleShare] = useState(false);
 
     useEffect(() => {
         if (slug) fetchArticle();
@@ -69,15 +70,18 @@ export default function ArticleDetail() {
                         </Link>
 
                         {article.category && (
-                            <span
-                                className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all cursor-pointer"
-                                style={{
-                                    backgroundColor: `${article.category.color}15`,
-                                    color: article.category.color,
-                                }}
-                            >
-                                {article.category.name}
-                            </span>
+                            <Link to={`${window.location.origin}${import.meta.env.BASE_URL}/category/${article.category.slug}`}>
+
+                                <span
+                                    className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all cursor-pointer"
+                                    style={{
+                                        backgroundColor: `${article.category.color}15`,
+                                        color: article.category.color,
+                                    }}
+                                >
+                                    {article.category.name}
+                                </span>
+                            </Link>
                         )}
                     </div>
 
@@ -109,10 +113,17 @@ export default function ArticleDetail() {
                         <button
                             className="cursor-pointer ml-auto flex items-center space-x-2 px-4 py-2 border border-gray-300 hover:bg-gray-50 transition-colors rounded-full"
                             aria-label="Share article"
+                            onClick={() => toggleShare(true)}
                         >
                             <Share2 className="w-4 h-4" />
                             <span className="text-sm font-medium">Share</span>
                         </button>
+
+                        <SharePopup
+                            active={isShareUp}
+                            onClose={() => { toggleShare(false) }}
+                            title={article.title}
+                        />
                     </div>
 
                     <div className="prose prose-lg max-w-none mb-8">
@@ -139,7 +150,7 @@ export default function ArticleDetail() {
 
                     <AuthorCard author={article.author} />
 
-                    <Comments />
+                    <Comments article_id='' />
                 </div>
             </div>
 

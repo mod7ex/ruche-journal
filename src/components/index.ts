@@ -8,3 +8,4 @@ export { default as RelatedArticles } from '~/components/RelatedArticles';
 export { default as Loading } from '~/components/Loading';
 export { default as Comments } from '~/components/Comments';
 export { default as AuthorCard } from '~/components/AuthorCard';
+export { default as SharePopup } from '~/components/SharePopup';
