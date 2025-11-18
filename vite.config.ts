@@ -9,6 +9,7 @@ export default defineConfig({
   resolve: {
     alias: { "~": path.resolve(__dirname, "src") }
   },
+  base: '/ruche-journal',
   server: {
     headers: {
       "Cross-Origin-Opener-Policy": "same-origin-allow-popups"
