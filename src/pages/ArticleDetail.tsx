@@ -150,7 +150,7 @@ export default function ArticleDetail() {
 
                     <AuthorCard author={article.author} />
 
-                    <Comments article_id='' />
+                    <Comments article_id={article.id} />
                 </div>
             </div>
 

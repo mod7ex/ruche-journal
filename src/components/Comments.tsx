@@ -1,57 +1,69 @@
-import { LogInIcon, LogOutIcon, TriangleIcon, RectangleGogglesIcon } from 'lucide-react';
-import { useEffect, useState, useRef } from 'react';
-import { handleGoogleLogin, auth, handleSignOut } from "~/firebase";
-import { useSelector, useDispatch } from 'react-redux'
-import { setUser } from '~/store/user'
-import { onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from 'react';
+import { handleGoogleLogin, db } from "~/firebase";
+import { useSelector } from 'react-redux'
+import { collection, addDoc, serverTimestamp, query, orderBy, onSnapshot, where } from "firebase/firestore";
 import GoogleSignIn from '/signin-google.png';
+import { formatDate } from '~/utils'
+import { Navigate, useParams } from 'react-router-dom';
 
-const _comments = [
-    {
-        id: 1,
-        name: "Lena Walters",
-        avatar: "https://i.pravatar.cc/50?img=32",
-        date: "October 7, 2025",
-        text: "This was a super interesting read! I love how clearly everything was explained.",
+interface Comment {
+    id: string,
+    article_id: string,
+    name?: string,
+    avatar?: string,
+    date?: {
+        seconds: number,
+        nanoseconds: number,
     },
-    {
-        id: 2,
-        name: "Marcos Trent",
-        avatar: "https://i.pravatar.cc/50?img=12",
-        date: "October 8, 2025",
-        text: "I didn’t know about this before. Thanks for sharing!",
-    },
-    {
-        id: 3,
-        name: "Aya Morita",
-        avatar: "https://i.pravatar.cc/50?img=5",
-        date: "October 9, 2025",
-        text: "Great coverage on this topic. Looking forward to your next post!",
-    },
-]
+    text?: string,
+}
 
 export default function ({ article_id }: { article_id: string }) {
-    const [comments, setComments] = useState(_comments);
+    const { slug } = useParams<{ slug: string }>();
+
+    if (!slug) return <Navigate to="/" />;
+
+    const [comments, setComments] = useState<Comment[]>([]);
 
     // @ts-ignore
     const user = useSelector(state => state.user.value)
 
     const [newComment, setNewComment] = useState("");
 
-    const submitComment = () => {
+    const submitComment = async () => {
         if (!newComment.trim()) return;
 
-        const fakeUser = {
-            id: Date.now(),
-            name: user.displayName,
-            avatar: user.photoURL,
-            date: "Just now",
-            text: newComment,
-        };
+        try {
+            await addDoc(collection(db, "comments"), {
+                article_id,
+                name: user.displayName,
+                avatar: user.photoURL,
+                date: serverTimestamp(),
+                text: newComment,
+            });
 
-        setComments([fakeUser, ...comments]);
-        setNewComment("");
+            setNewComment("");
+        } catch (err) {
+            console.error("Error adding comment: ", err);
+        }
     };
+
+    useEffect(() => {
+        const q = query(
+            collection(db, "comments"),
+            where("article_id", "==", article_id),
+            orderBy("date", "desc")
+        );
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            setComments(
+                // @ts-ignore
+                snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+            );
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     return (
         <div className="mt-10 border-t pt-8 border-gray-300">
@@ -109,7 +121,7 @@ export default function ({ article_id }: { article_id: string }) {
                         <div className="flex-1">
                             <div className="flex items-center justify-between">
                                 <h4 className="font-semibold">{c.name}</h4>
-                                <span className="text-sm text-gray-400">{c.date}</span>
+                                <span className="text-sm text-gray-400">{formatDate(c.date?.seconds!)}</span>
                             </div>
                             <p className="mt-1 text-gray-700">{c.text}</p>
                         </div>

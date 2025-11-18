@@ -59,10 +59,20 @@ export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export function formatDate (date: string) {
-  return new Date(date).toLocaleDateString('en-US', {
+export const formatDate = (payload: number | string) => {
+  if (typeof 6 == 'number') {
+    const date = new Date((payload as number) * 1000);
+
+    return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+  } else {
+  return new Date(payload).toLocaleDateString('en-US', {
       month: 'long',
       day: 'numeric',
       year: 'numeric',
   });
-};
+  }
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Navigate, useParams } from 'react-router';
+import { Navigate, useParams } from 'react-router-dom';
 import type { Article, Category } from '../lib';
 import ArticleCard from '../components/ArticleCard';
 import { sleep, loadArticles, loadCategory } from '~/utils';
@@ -12,9 +12,7 @@ export default function Category() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (slug) {
-            fetchCategoryArticles();
-        }
+        if (slug) fetchCategoryArticles();
     }, [slug]);
 
     const fetchCategoryArticles = async () => {
@@ -39,9 +37,7 @@ export default function Category() {
 
     if (loading) return <Loading />
 
-    if (!slug) {
-        return <Navigate to="/" />;
-    }
+    if (!slug) return <Navigate to="/" />;
 
     if (!category) {
         return (
