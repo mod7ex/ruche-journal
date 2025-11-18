@@ -3,3 +3,8 @@ export { default as Footer } from '~/components/Footer';
 export { default as ArticleCard } from '~/components/ArticleCard';
 export { default as SocialMediaLinks } from '~/components/SocialMediaLinks';
 export { default as ScrollToTop } from '~/components/ScrollToTop';
+export { default as AuthBtn } from '~/components/AuthBtn';
+export { default as RelatedArticles } from '~/components/RelatedArticles';
+export { default as Loading } from '~/components/Loading';
+export { default as Comments } from '~/components/Comments';
+export { default as AuthorCard } from '~/components/AuthorCard';

@@ -3,6 +3,7 @@ import { type Article } from '../lib';
 import { sleep, loadData } from '~/utils';
 import ArticleCard from '../components/ArticleCard';
 import { TrendingUp } from 'lucide-react';
+import { Loading } from '~/components';
 
 export default function Home() {
     const [featuredArticles, setFeaturedArticles] = useState<Article[]>([]);
@@ -30,13 +31,7 @@ export default function Home() {
         }
     };
 
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
-            </div>
-        );
-    }
+    if (loading) return <Loading />
 
     return (
         <div className="min-h-screen bg-gray-50">

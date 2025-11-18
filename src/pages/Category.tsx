@@ -3,6 +3,7 @@ import { Navigate, useParams } from 'react-router';
 import type { Article, Category } from '../lib';
 import ArticleCard from '../components/ArticleCard';
 import { sleep, loadArticles, loadCategory } from '~/utils';
+import { Loading } from '~/components';
 
 export default function Category() {
     const { slug } = useParams<{ slug: string }>();
@@ -36,13 +37,7 @@ export default function Category() {
         }
     };
 
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
-            </div>
-        );
-    }
+    if (loading) return <Loading />
 
     if (!slug) {
         return <Navigate to="/" />;
