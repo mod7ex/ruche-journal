@@ -20,6 +20,11 @@ export default function ({ title, active, onClose, onOpen }: Props) {
 
     const [copied, setCopied] = useState(false)
 
+    const shareData = {
+        title: title || "Check this out!",
+        url: window.location.href,
+    };
+
     const handelCopy = () => {
         setCopied(true)
         navigator.clipboard.writeText(shareData.url);
@@ -30,11 +35,6 @@ export default function ({ title, active, onClose, onOpen }: Props) {
     }
 
     onOpen && onOpen();
-
-    const shareData = {
-        title: title || "Check this out!",
-        url: window.location.href,
-    };
 
     // Native Web Share API
     const handleNativeShare = async () => {

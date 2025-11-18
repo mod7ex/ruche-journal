@@ -1,7 +1,10 @@
+'use client'
+
 import MainLayout from "~/layout/MainLayout";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, /* Navigate */ } from "react-router-dom";
 import {
-    Home, About,
+    Home,
+    About,
     Contact,
     RedirectArticle,
     ArticleDetail,
@@ -12,9 +15,18 @@ import {
     CookiePolicy
 } from "~/pages";
 
-import {
-    ScrollToTop,
-} from "~/components";
+// const Home = () => import('~/pages/Home')
+// const About = () => import('~/pages/About')
+// const Contact = () => import('~/pages/Contact')
+// const RedirectArticle = () => import('~/pages/RedirectArticle')
+// const ArticleDetail = () => import('~/pages/ArticleDetail')
+// const RedirectCategory = () => import('~/pages/RedirectCategory')
+// const Category = () => import('~/pages/Category')
+// const PrivacyAndPolicy = () => import('~/pages/PrivacyAndPolicy')
+// const TermsOfService = () => import('~/pages/TermsOfService')
+// const CookiePolicy = () => import('~/pages/CookiePolicy')
+
+import { ScrollToTop } from "~/components";
 
 export default function App() {
     return (
