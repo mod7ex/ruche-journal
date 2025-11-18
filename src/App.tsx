@@ -1,30 +1,17 @@
-'use client'
-
+import { lazy } from "react";
 import MainLayout from "~/layout/MainLayout";
 import { Routes, Route, /* Navigate */ } from "react-router-dom";
-import {
-    Home,
-    About,
-    Contact,
-    RedirectArticle,
-    ArticleDetail,
-    RedirectCategory,
-    Category,
-    PrivacyAndPolicy,
-    TermsOfService,
-    CookiePolicy
-} from "~/pages";
 
-// const Home = () => import('~/pages/Home')
-// const About = () => import('~/pages/About')
-// const Contact = () => import('~/pages/Contact')
-// const RedirectArticle = () => import('~/pages/RedirectArticle')
-// const ArticleDetail = () => import('~/pages/ArticleDetail')
-// const RedirectCategory = () => import('~/pages/RedirectCategory')
-// const Category = () => import('~/pages/Category')
-// const PrivacyAndPolicy = () => import('~/pages/PrivacyAndPolicy')
-// const TermsOfService = () => import('~/pages/TermsOfService')
-// const CookiePolicy = () => import('~/pages/CookiePolicy')
+const Home = lazy(() => import('~/pages/Home'))
+const About = lazy(() => import('~/pages/About'))
+const Contact = lazy(() => import('~/pages/Contact'))
+const RedirectArticle = lazy(() => import('~/pages/RedirectArticle'))
+const ArticleDetail = lazy(() => import('~/pages/ArticleDetail'))
+const RedirectCategory = lazy(() => import('~/pages/RedirectCategory'))
+const Category = lazy(() => import('~/pages/Category'))
+const PrivacyAndPolicy = lazy(() => import('~/pages/PrivacyAndPolicy'))
+const TermsOfService = lazy(() => import('~/pages/TermsOfService'))
+const CookiePolicy = lazy(() => import('~/pages/CookiePolicy'))
 
 import { ScrollToTop } from "~/components";
 
