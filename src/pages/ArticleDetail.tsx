@@ -70,7 +70,7 @@ export default function ArticleDetail() {
                         </Link>
 
                         {article.category && (
-                            <Link to={`${window.location.origin}${import.meta.env.BASE_URL}/category/${article.category.slug}`}>
+                            <Link to={`${window.location.origin}/category/${article.category.slug}`}>
 
                                 <span
                                     className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all cursor-pointer"

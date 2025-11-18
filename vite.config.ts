@@ -6,7 +6,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [tailwindcss(), react(), tsconfigPaths()],
-  base: "/ruche-journal", 
   resolve: {
     alias: { "~": path.resolve(__dirname, "src") }
   },
