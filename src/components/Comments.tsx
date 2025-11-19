@@ -94,9 +94,9 @@ export default function ({ article_id }: { article_id: string }) {
                         </div>
                     </div>
                 ) : (
-                    <div className="px-4 p-2 mb-8 border rounded-lg bg-gray-50 flex gap-4 items-center text-center">
+                    <div className="px-4 p-2 mb-8 border rounded-lg bg-gray-50 flex gap-4 items-center justify-between text-center">
                         <p className="text-gray-700 font-medium">
-                            You must be logged in to post a comment.
+                            <small>Vous devez être connecté pour publier un commentaire.</small>
                         </p>
                         <button
                             className="p-2 rounded cursor-pointer border border-gray-300 hover:bg-gray-100 transition-all"
