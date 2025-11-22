@@ -1,0 +1,1 @@
+@keyframes ticker{0%{transform:translate(0)}to{transform:translate(-50%)}}.ticker-animation{animation:ticker 20s linear infinite}.ticker-paused:hover{animation-play-state:paused}

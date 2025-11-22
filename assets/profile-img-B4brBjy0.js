@@ -1,1 +1,0 @@
-import{j as s}from"./index-CMP6dosy.js";const t="/ruche-journal/assets/profile-Aiqygzp_.jpg";function i({src:r,...e}){return s.jsx("img",{...e,src:r==""?t:r,onError:o=>{o.target.onerror=null,o.target.src=t}})}export{i as default};
