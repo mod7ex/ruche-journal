@@ -1,6 +1,8 @@
 import { Link } from 'react-router';
-import { SocialMediaLinks } from '~/components';
 import Logo from '/logo-white-transparent.png'
+import { lazy } from 'react';
+
+const SocialMediaLinks = lazy(() => import('~/components/SocialMediaLinks'));
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();

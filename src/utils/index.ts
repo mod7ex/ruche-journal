@@ -60,19 +60,19 @@ export function sleep(ms: number) {
 }
 
 export const formatDate = (payload: number | string) => {
-  if (typeof 6 == 'number') {
+  if (typeof payload == 'number') {
     const date = new Date((payload as number) * 1000);
 
-    return date.toLocaleDateString("en-US", {
+    return date.toLocaleDateString("fr-FR", {
         year: "numeric",
         month: "long",
         day: "numeric",
     });
   } else {
-  return new Date(payload).toLocaleDateString('en-US', {
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric',
-  });
+    return new Date(payload).toLocaleDateString('fr-FR', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+    });
   }
 }

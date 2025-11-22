@@ -51,16 +51,17 @@ export default function ({ title, active, onClose, onOpen }: Props) {
     return (
         <div className="share-popup-overlay" onClick={onClose}>
             <div className="share-popup max-w-sm" onClick={e => e.stopPropagation()}>
-                <h3 className="mb-4">Partager</h3>
+                <h3 className="mb-8">
+                    <Share2Icon className="scale-125 transition-all mx-auto" fill='black' />
+                </h3>
 
                 {'share' in navigator && (
-                    <button className="flex justify-center gap-8 bg-gray-200 p-3 rounded mb-6 cursor-pointer w-full shadow-lg hover:shadow-xl transition-all" onClick={handleNativeShare}>
-                        <Share2Icon className="hover:scale-125 transition-all" />
+                    <button className="bg-gray-200 p-3 rounded mb-8 cursor-pointer w-full shadow-lg hover:shadow-xl transition-all" onClick={handleNativeShare}>
                         <span>Partager via l'appareil…</span>
                     </button>
                 )}
 
-                <div className="share-options mb-6 flex justify-center gap-16">
+                <div className="share-options mb-8 flex justify-center gap-16">
                     {
                         mediums.map(({ link, icon: Icon }, index) => (<a
                             key={'share' + index}
@@ -79,7 +80,7 @@ export default function ({ title, active, onClose, onOpen }: Props) {
                 >
                     <small className='p-2 mr-2'>Copie</small>
                     <small className="pl-3 border-s border-gray-500 flex pt-1 text-sm whitespace-nowrap overflow-x-hidden w-full">
-                        {`${shareData.url.slice(0, 35)}...    `}
+                        {`${shareData.url.slice(0, 30)}...    `}
                         <CheckIcon className={copied ? 'text-green-500' : 'text-gray-200'} />
                     </small>
                 </button>

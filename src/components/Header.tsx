@@ -1,10 +1,10 @@
 import { Link } from 'react-router';
 import { Menu, X, Search } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy } from 'react';
 import { categories } from '~/lib';
 import Logo from '/logo.png';
 
-import { AuthBtn } from '~/components';
+const AuthBtn = lazy(() => import('~/components/AuthBtn'));
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);

@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { handleGoogleLogin, db } from "~/firebase";
 import { useSelector } from 'react-redux'
 import { collection, addDoc, serverTimestamp, query, orderBy, onSnapshot, where } from "firebase/firestore";
 import GoogleSignIn from '/signin-google.png';
 import { formatDate } from '~/utils'
 import { Navigate, useParams } from 'react-router-dom';
+
+const ProfileImg = lazy(() => import('~/components/profile-img'));
 
 interface Comment {
     id: string,
@@ -67,12 +69,12 @@ export default function ({ article_id }: { article_id: string }) {
 
     return (
         <div className="mt-10 border-t pt-8 border-gray-300">
-            <h2 className="text-xl font-semibold mb-6">Comments</h2>
+            <h2 className="text-xl font-semibold mb-6">Commentaires</h2>
 
             {
                 user ? (
                     <div className="flex items-start gap-3 mb-8">
-                        <img
+                        <ProfileImg
                             src={user.photoURL!}
                             alt="User avatar"
                             className="w-10 h-10 rounded-full"
@@ -80,7 +82,7 @@ export default function ({ article_id }: { article_id: string }) {
                         <div className="flex-1">
                             <textarea
                                 className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
-                                placeholder="Write a comment..."
+                                placeholder="Écrire un commentaire..."
                                 value={newComment}
                                 onChange={(e) => setNewComment(e.target.value)}
                             />
@@ -89,7 +91,7 @@ export default function ({ article_id }: { article_id: string }) {
                                 type="submit"
                                 className="px-8 py-3 bg-gray-100 text-gray-900 rounded-lg font-semibold hover:bg-gray-300 transition-colors hover:cursor-pointer shadow-md"
                             >
-                                Post Comment
+                                Publier
                             </button>
                         </div>
                     </div>
@@ -113,7 +115,7 @@ export default function ({ article_id }: { article_id: string }) {
             <div className="space-y-6">
                 {comments.map((c) => (
                     <div key={c.id} className="flex gap-4">
-                        <img
+                        <ProfileImg
                             src={c.avatar}
                             alt="avatar"
                             className="w-12 h-12 rounded-full"

@@ -1,4 +1,5 @@
-import { SocialMediaLinks } from '~/components';
+import { lazy } from 'react';
+const SocialMediaLinks = lazy(() => import('~/components/SocialMediaLinks'));
 
 export default function () {
     return (

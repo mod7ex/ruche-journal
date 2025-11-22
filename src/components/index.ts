@@ -9,3 +9,5 @@ export { default as Loading } from '~/components/Loading';
 export { default as Comments } from '~/components/Comments';
 export { default as AuthorCard } from '~/components/AuthorCard';
 export { default as SharePopup } from '~/components/SharePopup';
+export { default as HeadlinesTicker } from '~/components/HeadlinesTicker';
+export { default as ProfileImg } from '~/components/profile-img';

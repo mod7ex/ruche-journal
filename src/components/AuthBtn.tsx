@@ -1,9 +1,12 @@
 import { LogInIcon, LogOutIcon, TriangleIcon } from 'lucide-react';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, lazy } from 'react';
 import { handleGoogleLogin, auth, handleSignOut } from "~/firebase";
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser, serializableUser } from '~/store/user'
 import { onAuthStateChanged } from "firebase/auth";
+
+const ProfileImg = lazy(() => import('~/components/profile-img'));
+
 
 export default function Header() {
     const [isActive, toggle] = useState(false);
@@ -67,7 +70,12 @@ export default function Header() {
                 className='cursor-pointer'
                 onClick={() => toggle(!isActive)}
             >
-                <img src={user.photoURL!} alt="user icon" width={40} className='rounded-full shadow-lg transition-all duration-300 ease-in-out' />
+                <ProfileImg
+                    src={user.photoURL!}
+                    width={40}
+                    alt="user icon"
+                    className='rounded-full shadow-lg transition-all duration-300 ease-in-out'
+                />
             </button>
 
             {isActive &&

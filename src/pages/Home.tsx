@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { type Article } from '../lib';
+import { lazy, useEffect, useState } from 'react';
+import { type Article } from '~/lib';
 import { sleep, loadData } from '~/utils';
-import ArticleCard from '../components/ArticleCard';
-import { TrendingUp } from 'lucide-react';
-import { Loading } from '~/components';
+
+const ArticleCard = lazy(() => import('~/components/ArticleCard'))
+const HeadlinesTicker = lazy(() => import('~/components/HeadlinesTicker'))
+const Loading = lazy(() => import('~/components/Loading'))
 
 export default function Home() {
     const [featuredArticles, setFeaturedArticles] = useState<Article[]>([]);
@@ -35,19 +36,12 @@ export default function Home() {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <section className="bg-white py-8 border-b border-gray-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                        <TrendingUp className="w-5 h-5" />
-                        <span className="font-semibold">Trending Now</span>
-                    </div>
-                </div>
-            </section>
+            <HeadlinesTicker />
 
             {featuredArticles.length > 0 && (
                 <section className="py-12">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-8">Featured Stories</h2>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-8">À LA UNE</h2>
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                             {featuredArticles[0] && (
@@ -71,7 +65,7 @@ export default function Home() {
             <section className="py-12 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between mb-8">
-                        <h2 className="text-3xl font-bold text-gray-900">Latest Articles</h2>
+                        <h2 className="text-3xl font-bold text-gray-900">Derniers Articles</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router';
 import type { Article, Tag } from '~/lib';
 import { loadArticle, formatDate, sleep } from '~/utils';
 import { Clock, User, ArrowLeft, Share2 } from 'lucide-react';
-import { Comments, Loading, RelatedArticles, AuthorCard, SharePopup } from '~/components'
+import { Comments, Loading, RelatedArticles, AuthorCard, SharePopup, ProfileImg } from '~/components'
 
 export default function ArticleDetail() {
     const { slug } = useParams<{ slug: string }>();
@@ -66,7 +66,7 @@ export default function ArticleDetail() {
                             className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
                         >
                             <ArrowLeft className="w-4 h-4" />
-                            <span>Back</span>
+                            <span>Retour</span>
                         </Link>
 
                         {article.category && (
@@ -92,7 +92,7 @@ export default function ArticleDetail() {
                     <div className="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-gray-200">
                         {article.author && (
                             <div className="flex items-center space-x-3">
-                                <img
+                                <ProfileImg
                                     src={article.author.avatar_url}
                                     alt={article.author.name}
                                     className="w-12 h-12 rounded-full"
@@ -116,7 +116,7 @@ export default function ArticleDetail() {
                             onClick={() => toggleShare(true)}
                         >
                             <Share2 className="w-4 h-4" />
-                            <span className="text-sm font-medium">Share</span>
+                            <span className="text-sm font-medium">Partager</span>
                         </button>
 
                         <SharePopup

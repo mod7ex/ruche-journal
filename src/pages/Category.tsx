@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import type { Article, Category } from '../lib';
-import ArticleCard from '../components/ArticleCard';
+import type { Article, Category } from '~/lib';
 import { sleep, loadArticles, loadCategory } from '~/utils';
-import { Loading } from '~/components';
+import { lazy } from 'react';
+
+const ArticleCard = lazy(() => import('~/components/ArticleCard'));
+const Loading = lazy(() => import('~/components/Loading'));
 
 export default function Category() {
     const { slug } = useParams<{ slug: string }>();

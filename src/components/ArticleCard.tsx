@@ -1,6 +1,9 @@
 import { Link } from 'react-router';
 import { Clock, User } from 'lucide-react';
 import { type Article } from '~/lib';
+import { lazy } from 'react';
+
+const ProfileImg = lazy(() => import('~/components/profile-img'));
 
 interface ArticleCardProps {
     article: Article;
@@ -98,11 +101,12 @@ export default function ArticleCard({ article, featured = false }: ArticleCardPr
                 <div className="flex items-center justify-between text-sm text-gray-500 mt-auto">
                     {article.author && (
                         <div className="flex items-center space-x-2">
-                            <img
+                            <ProfileImg
                                 src={article.author.avatar_url}
                                 alt={article.author.name}
                                 className="w-6 h-6 rounded-full"
                             />
+
                             <span>{article.author.name}</span>
                         </div>
                     )}

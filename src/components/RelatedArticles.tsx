@@ -34,7 +34,7 @@ export default function ArticleDetail({ category_id, count }: { category_id: str
 
     if (relatedArticles.length) return (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Related Articles</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">À lire aussi</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {relatedArticles.map((related) => (
                     <Link
