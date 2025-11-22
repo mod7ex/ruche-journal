@@ -13,7 +13,7 @@ const PrivacyAndPolicy = lazy(() => import('~/pages/PrivacyAndPolicy'))
 const TermsOfService = lazy(() => import('~/pages/TermsOfService'))
 const CookiePolicy = lazy(() => import('~/pages/CookiePolicy'))
 
-import { ScrollToTop } from "~/components";
+import ScrollToTop from "~/components/ScrollToTop";
 
 export default function App() {
     return (
