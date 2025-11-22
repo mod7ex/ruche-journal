@@ -1,9 +1,16 @@
-import { useEffect, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import type { Article, Tag } from '~/lib';
 import { loadArticle, formatDate, sleep } from '~/utils';
 import { Clock, User, ArrowLeft, Share2 } from 'lucide-react';
-import { Comments, Loading, RelatedArticles, AuthorCard, SharePopup, ProfileImg } from '~/components'
+
+const Comments = lazy(() => import('~/components/Comments'));
+const Loading = lazy(() => import('~/components/Loading'));
+const RelatedArticles = lazy(() => import('~/components/RelatedArticles'));
+const AuthorCard = lazy(() => import('~/components/AuthorCard'));
+const SharePopup = lazy(() => import('~/components/SharePopup'));
+const ProfileImg = lazy(() => import('~/components/profile-img'));
+
 
 export default function ArticleDetail() {
     const { slug } = useParams<{ slug: string }>();

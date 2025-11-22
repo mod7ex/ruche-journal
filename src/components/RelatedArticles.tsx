@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import type { Article } from '~/lib';
 import { loadRelatedArticles, sleep } from '~/utils';
-import { Loading } from '~/components'
+
+const Loading = lazy(() => import('~/components/Loading'));
 
 export default function ArticleDetail({ category_id, count }: { category_id: string, count: number }) {
     const { slug } = useParams<{ slug: string }>();
